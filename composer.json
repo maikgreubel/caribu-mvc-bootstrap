@@ -8,7 +8,7 @@
 			"Nkey\\Caribu\\Mvc\\Tests\\" : "tests"
 		}
 	},
-	"name" : "Nkey/caribu-mvc-bootstrap",
+	"name" : "nkey/caribu-mvc-bootstrap",
 	"type" : "library",
 	"description" : "Bootstrap View addon for Caribu MVC",
 	"license" : "BSD-2-Clause",
@@ -16,5 +16,18 @@
 		"php" : ">=5.4",
 		"nkey/phpgenerics" : "dev-master",
 		"nkey/caribu-mvc" : "dev-master"
-	}
+	},
+	"support" : {
+		"email" : "greubel@nkey.de",
+		"issues" : "https://github.com/maikgreubel/caribu-mvc-bootstrap/issues",
+		"wiki" : "https://github.com/maikgreubel/caribu-mvc-bootstrap/wiki"
+	},
+	"authors" : [{
+			"name" : "Maik Greubel",
+			"email" : "greubel@nkey.de",
+			"homepage" : "http://www.nkey.de",
+			"role" : "Maintainer"
+		}
+	],
+	"homepage" : "https://github.com/maikgreubel/caribu-mvc-bootstrap"
 }
