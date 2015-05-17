@@ -4,23 +4,26 @@
 	],
 	"autoload" : {
 		"psr-4" : {
-			"Nkey\\Caribu\\Mvc\\" : "src/Mvc",
-			"Nkey\\Caribu\\Mvc\\Tests\\" : "tests"
+			"Nkey\\Caribu\\Mvc\\" : "src/Mvc"
 		}
+	},
+	"autoload-dev" : {
+		"Nkey\\Caribu\\Mvc\\Tests\\" : "tests"
 	},
 	"name" : "nkey/caribu-mvc-bootstrap",
 	"type" : "library",
-	"description" : "Bootstrap View addon for Caribu MVC",
+	"description" : "Bootstrap View addon for Caribu (M)VC",
 	"license" : "BSD-2-Clause",
 	"require" : {
 		"php" : ">=5.4",
-		"nkey/phpgenerics" : "dev-master",
-		"nkey/caribu-mvc" : "dev-master"
+		"nkey/phpgenerics" : "1.1.*@dev",
+		"nkey/caribu-mvc" : "1.0.*@dev"
 	},
 	"support" : {
 		"email" : "greubel@nkey.de",
 		"issues" : "https://github.com/maikgreubel/caribu-mvc-bootstrap/issues",
-		"wiki" : "https://github.com/maikgreubel/caribu-mvc-bootstrap/wiki"
+		"wiki" : "https://github.com/maikgreubel/caribu-mvc-bootstrap/wiki",
+		"source" : "https://github.com/maikgreubel/caribu-mvc-bootstrap"
 	},
 	"authors" : [{
 			"name" : "Maik Greubel",
