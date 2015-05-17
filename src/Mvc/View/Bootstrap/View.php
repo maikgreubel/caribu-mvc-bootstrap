@@ -1,11 +1,18 @@
 <?php
-namespace Nkey\Caribu\Mvc\View;
+namespace Nkey\Caribu\Mvc\View\Bootstrap;
 
-use Nkey\Caribu\Mvc\Controller\Response;
-use Nkey\Caribu\Mvc\Controller\Request;
-use Generics\Util\Interpolator;
+use \Nkey\Caribu\Mvc\Controller\Response;
+use \Nkey\Caribu\Mvc\Controller\Request;
+use \Nkey\Caribu\Mvc\View\AbstractView;
+use \Generics\Util\Interpolator;
 
-class BootstrapView extends AbstractView
+/**
+ * This class provides a view implementation depending on bootstrap
+ *
+ * @author Maik Greubel <greubel@nkey.de>
+ *         This file is part of Bootstrap addon for Caribu MVC
+ */
+class View extends AbstractView
 {
     use Interpolator;
 
@@ -18,6 +25,10 @@ class BootstrapView extends AbstractView
         return 1;
     }
 
+    /**
+     * (non-PHPdoc)
+     * @see \Nkey\Caribu\Mvc\View\View::render()
+     */
     public function render(Response &$response, Request $request, array $parameters = array())
     {
         if ($response->getType() != 'text/html') {

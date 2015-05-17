@@ -13,7 +13,10 @@ class BootstrapTestController extends AbstractController
      */
     public function index()
     {
-        $this->response->addHeader('Last-modified', \DateTime::createFromFormat('U', filemtime(__FILE__))->format(\DateTime::RFC2822));
+        $this->response->addHeader(
+            'Last-modified',
+            \DateTime::createFromFormat('U', filemtime(__FILE__))->format(\DateTime::RFC2822)
+        );
 
         echo '<div class="panel panel-default">';
         echo '<div class="panel-body">';
@@ -23,7 +26,7 @@ class BootstrapTestController extends AbstractController
     }
 }
 
-Application::getInstance()->registerView('\Nkey\Caribu\Mvc\View\BootstrapView')
+Application::getInstance()->registerView('\Nkey\Caribu\Mvc\View\Bootstrap\View')
     ->registerController('\Nkey\Caribu\Mvc\Tests\BootstrapTestController')
     ->setDefaults('BootstrapTest');
 
