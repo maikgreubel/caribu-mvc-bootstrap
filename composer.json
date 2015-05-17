@@ -32,5 +32,10 @@
 			"role" : "Maintainer"
 		}
 	],
-	"homepage" : "https://github.com/maikgreubel/caribu-mvc-bootstrap"
+	"homepage" : "https://github.com/maikgreubel/caribu-mvc-bootstrap",
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "1.0-dev"
+        }
+    }	
 }
