@@ -16,6 +16,11 @@ class View extends AbstractView
 {
     use Interpolator;
 
+    public function __construct()
+    {
+        $this->registerControl('Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form', 'form');
+    }
+
     /**
      * (non-PHPdoc)
      * @see \Nkey\Caribu\Mvc\View\View::getOrder()
@@ -29,7 +34,7 @@ class View extends AbstractView
      * (non-PHPdoc)
      * @see \Nkey\Caribu\Mvc\View\View::render()
      */
-    public function render(Response &$response, Request $request, array $parameters = array())
+    public function render(Response &$response, Request $request, $parameters = array())
     {
         if ($response->getType() != 'text/html') {
             return;
