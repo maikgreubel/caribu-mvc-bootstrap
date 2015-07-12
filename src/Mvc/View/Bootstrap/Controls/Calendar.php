@@ -25,7 +25,7 @@ class Calendar extends Field
             if (!empty($str)) {
                 $str .= ', ';
             }
-            $str .= sprintf("%s: '%s'", $name, $value);
+            $str .= sprintf("%s: %s", $name, $value);
         }
         return $str;
     }
@@ -51,7 +51,7 @@ class Calendar extends Field
     public function render(Request $request, $parameters = array())
     {
         $this->options['language'] = $request->getParam('Accept-Language-Best');
-        $this->options['tmpl_path'] = sprintf('%svendor/sehioromano/bootstrap-calendar/tmpls', $request->getContextPrefix());
+        $this->options['tmpl_path'] = sprintf('%s../vendor/serhioromano/bootstrap-calendar/tmpls', $request->getContextPrefix());
 
         $html = '<script type="text/javascript">
     var calendar = $("#'.$this->getId().'").calendar({'.$this->optionsToString($this->options).'});
