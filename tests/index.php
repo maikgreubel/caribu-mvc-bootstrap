@@ -10,6 +10,7 @@ use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form;
 use Nkey\Caribu\Mvc\View\Bootstrap\Controls\TextField;
 use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Button;
 use Generics\Logger\ExtendedLogger;
+use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Calendar;
 
 /**
  * A test controller for bootstrap addon
@@ -69,6 +70,23 @@ class BootstrapTestController extends AbstractController
         echo '<div class="panel panel-default">';
         echo '<div class="panel-body">';
         echo "Welcome {$request->getParam('username')}";
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function calendar(Request $request)
+    {
+        $form = new Form('event', sprintf("%s%s/calendar", $request->getContextPrefix(), $request->getController()));
+
+        $calendar = new Calendar('calendar');
+        $calendar->setOption('events_source', sprintf("%s%s/events", $request->getContextPrefix(), $request->getController()));
+
+        $form->addField($calendar);
+        $this->viewParams['form']['calendar'] = $form;
+
+        echo '<div class="panel panel-default">';
+        echo '<div class="panel-body">';
+        echo '{form=calendar}';
         echo '</div>';
         echo '</div>';
     }

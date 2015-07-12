@@ -45,11 +45,18 @@ class View extends AbstractView
 <head>
     <title>{title}</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/css/calendar.min.css", $request->getContextPrefix()).'">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="'.sprintf("%s../components/underscore/underscore-min.js", $request->getContextPrefix()).'"></script>
+    <script src="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/js/calendar.js", $request->getContextPrefix()).'"></script>
+    '.(null !== $request->getParam('Accept-Language-Best') ?
+        sprintf('<script src="%s../vendor/serhioromano/bootstrap-calendar/js/language/%s.js"></script>',
+            $request->getContextPrefix(), $request->getParam('Accept-Language-Best')) :
+        '').'
 </head>
 <body>
     <div class="jumbotron">

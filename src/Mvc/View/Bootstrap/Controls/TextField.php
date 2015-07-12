@@ -22,13 +22,6 @@ class TextField extends Field
     private $placeholder;
 
     /**
-     * The text field type
-     *
-     * @var string
-     */
-    private $type;
-
-    /**
      *
      * @return string The placeholder value
      */
@@ -80,8 +73,7 @@ class TextField extends Field
         }
 
         $code .= sprintf(
-            '<input type="%s" name="%s" id="%s" class="form-control %s" value="%s" placeholder="%s"/>',
-            is_null($this->getType()) ? 'text' : $this->getType(),
+            '<input type="text" name="%s" id="%s" class="form-control %s" value="%s" placeholder="%s"/>',
             $name,
             $id,
             $cssClass,
@@ -92,28 +84,5 @@ class TextField extends Field
         $code .= sprintf('</div>');
 
         return $code;
-    }
-
-    /**
-     * Set the text field type
-     *
-     * @param string $type
-     *
-     * @return TextField This instance
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    /**
-     * Retrieve the text field type
-     *
-     * @return string The text field type
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 }
