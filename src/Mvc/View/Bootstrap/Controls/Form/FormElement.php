@@ -1,7 +1,7 @@
 <?php
-namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls;
+namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form;
 
-use Nkey\Caribu\Mvc\View\Control;
+use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Control;
 
 /**
  * Abstract form element
@@ -10,7 +10,7 @@ use Nkey\Caribu\Mvc\View\Control;
  *
  *         This file is part of Caribu MVC Bootstrap addon package
  */
-abstract class FormElement implements Control
+abstract class FormElement extends Control
 {
 
     /**

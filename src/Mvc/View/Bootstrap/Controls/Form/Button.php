@@ -1,5 +1,5 @@
 <?php
-namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls;
+namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form;
 
 use Nkey\Caribu\Mvc\Controller\Request;
 

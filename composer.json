@@ -18,7 +18,8 @@
 		"php" : ">=5.4",
 		"nkey/phpgenerics" : "1.1.*@dev",
 		"nkey/caribu-mvc" : "1.0.*@dev",
-		"serhioromano/bootstrap-calendar" : "0.2.4"
+		"serhioromano/bootstrap-calendar" : "0.2.4",
+		"eternicode/bootstrap-datepicker" :  "1.4.0"
 	},
 	"support" : {
 		"email" : "greubel@nkey.de",

@@ -1,8 +1,8 @@
 <?php
-namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls;
+namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form;
 
-use Nkey\Caribu\Mvc\View\Control;
 use Nkey\Caribu\Mvc\Controller\Request;
+use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Control;
 
 /**
  * Bootstrap form implementation
@@ -11,7 +11,7 @@ use Nkey\Caribu\Mvc\Controller\Request;
  *
  *         This file is part of Caribu MVC Bootstrap addon package
  */
-class Form implements Control
+class Form extends Control
 {
     /**
      * List of fields
@@ -26,13 +26,6 @@ class Form implements Control
      * @var array
      */
     private $buttons = array();
-
-    /**
-     * Id of form
-     *
-     * @var string
-     */
-    private $id;
 
     /**
      * Method of form
@@ -148,26 +141,6 @@ class Form implements Control
     public function addButton(Button $button)
     {
         $this->buttons[] = $button;
-    }
-
-    /**
-     *
-     * @return the string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     *
-     * @param
-     *            $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**

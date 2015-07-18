@@ -1,5 +1,5 @@
 <?php
-namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls;
+namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form;
 
 use Nkey\Caribu\Mvc\Controller\Request;
 use Nkey\Caribu\Mvc\View\Controls\ControlException;
@@ -15,11 +15,23 @@ class TextField extends Field
 {
 
     /**
+     * Type of text field
+     * @var string
+     */
+    private $type;
+
+    /**
      * The placeholder
      *
      * @var string
      */
     private $placeholder;
+
+    /**
+     * Additional element parameters
+     * @var array
+     */
+    private $elementParameters = array();
 
     /**
      *
@@ -31,6 +43,20 @@ class TextField extends Field
     }
 
     /**
+     * Add another parameter to element
+     *
+     * @param string $name The name of parameter
+     * @param string $value The value of parameter
+     *
+     * @return TextField
+     */
+    public function addParameter($name, $value)
+    {
+        $this->elementParameters[$name] = $value;
+        return $this;
+    }
+
+    /**
      *
      * @param string $placeholder
      *            The placeholder value
@@ -39,6 +65,20 @@ class TextField extends Field
     {
         $this->placeholder = $placeholder;
         return $this;
+    }
+
+    /**
+     * Retrieve the element parameter as string
+     *
+     * @return string The element parameters
+     */
+    private function getElementParameterString()
+    {
+        $string = "";
+        foreach ($this->elementParameters as $name => $value) {
+            $string .= sprintf(' %s="%s"', $name, $value);
+        }
+        return $string;
     }
 
     /**
@@ -73,16 +113,28 @@ class TextField extends Field
         }
 
         $code .= sprintf(
-            '<input type="text" name="%s" id="%s" class="form-control %s" value="%s" placeholder="%s"/>',
+            '<input type="%s" name="%s" id="%s" class="form-control %s" value="%s" placeholder="%s"%s/>',
+            $this->type,
             $name,
             $id,
             $cssClass,
             $value,
-            $placeHolder
+            $placeHolder,
+            $this->getElementParameterString()
         );
 
         $code .= sprintf('</div>');
 
         return $code;
+    }
+
+    /**
+     * Set the text field type
+     *
+     * @param string $type The type
+     */
+    public function setType($type = 'text')
+    {
+        $this->type = $type;
     }
 }
