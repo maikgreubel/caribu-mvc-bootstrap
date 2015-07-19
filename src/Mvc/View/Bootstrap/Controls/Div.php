@@ -41,7 +41,7 @@ class Div extends Control
     {
         $elementsRendered = "";
         foreach ($this->elements as $element) {
-            $elementsRendered .= $element->render($request, $parameters);
+            $elementsRendered .= sprintf('<div>%s</div>', $element->render($request, $parameters));
         }
         return $elementsRendered;
     }
