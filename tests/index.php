@@ -13,6 +13,7 @@ use Generics\Logger\ExtendedLogger;
 use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Calendar;
 use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Div;
 use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form\DatePicker;
+use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Table;
 
 /**
  * A test controller for bootstrap addon
@@ -35,6 +36,7 @@ class BootstrapTestController extends AbstractController
         printf('<a href="%s/formTest" class="list-group-item">Form test</a>', lcfirst($request->getController()));
         printf('<a href="%s/calendar" class="list-group-item">Calendar test</a>', lcfirst($request->getController()));
         printf('<a href="%s/datePicker" class="list-group-item">Date picker test</a>', lcfirst($request->getController()));
+        printf('<a href="%s/table" class="list-group-item">Table test</a>', lcfirst($request->getController()));
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -124,6 +126,41 @@ class BootstrapTestController extends AbstractController
         echo '<div class="panel panel-default">';
         echo '<div class="panel-body">';
         echo '{form=datepicker}';
+        echo '</div>';
+        echo '</div>';
+
+    }
+
+    /**
+     * @webMethod
+     */
+    public function table()
+    {
+        $table = new Table();
+        $table->addColumnHeader('#')->addColumnHeader('First name')->addColumnHeader('Last name')->addColumnHeader('Email');
+
+        $table->addRow(array(
+            1,
+            'Joe',
+            'Tester',
+            'joe@test.tld'
+        ))->addRow(array(
+            2,
+            'Jane',
+            'Doe',
+            'jane@doe.tld'
+        ))->addRow(array(
+            45,
+            'Hank',
+            'Wolli',
+            'hank@wolli.tld'
+        ));
+
+        $this->viewParams['table']['users'] = $table;
+
+        echo '<div class="panel panel-default">';
+        echo '<div class="panel-body">';
+        echo '{table=users}';
         echo '</div>';
         echo '</div>';
 

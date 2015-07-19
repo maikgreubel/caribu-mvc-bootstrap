@@ -21,6 +21,7 @@ class View extends AbstractView
         $this->registerControl('Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form\Form', 'form');
         $this->registerControl('Nkey\Caribu\Mvc\View\Bootstrap\Controls\Div', 'div');
         $this->registerControl('Nkey\Caribu\Mvc\View\Bootstrap\Controls\Span', 'span');
+        $this->registerControl('Nkey\Caribu\Mvc\View\Bootstrap\Controls\Table', 'table');
     }
 
     /**
