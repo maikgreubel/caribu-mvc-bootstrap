@@ -41,7 +41,10 @@ class Div extends Control
     {
         $elementsRendered = "";
         foreach ($this->elements as $element) {
-            $elementsRendered .= sprintf('<div>%s</div>', $element->render($request, $parameters));
+            assert($element instanceof Control);
+            $elementsRendered .= sprintf('<div%s>%s</div>',
+                $element->getId() ? sprintf(' id="%s"', $element->getId()) : '',
+                $element->render($request, $parameters));
         }
         return $elementsRendered;
     }
