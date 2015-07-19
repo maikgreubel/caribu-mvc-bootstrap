@@ -9,14 +9,14 @@ class Table extends Control
      *
      * @var array
      */
-    private $columnHeaders;
+    private $columnHeaders = array();
 
     /**
      * Add a row to the table
      *
      * @var array
      */
-    private $rows;
+    private $rows = array();
 
     /**
      * Add a new header
