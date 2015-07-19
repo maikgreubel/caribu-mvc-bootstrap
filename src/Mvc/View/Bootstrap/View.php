@@ -16,6 +16,19 @@ class View extends AbstractView
 {
     use Interpolator;
 
+    /**
+     * List of css files to include
+     *
+     * @var array
+     */
+    private $cssFiles = array();
+
+    /**
+     * List of javascript files to include
+     * @var unknown
+     */
+    private $jsFiles = array();
+
     public function __construct()
     {
         $this->registerControl('Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form\Form', 'form');
@@ -31,6 +44,32 @@ class View extends AbstractView
     public function getOrder()
     {
         return 1;
+    }
+
+    /**
+     * Get all additional css files as link html code
+     * @return string
+     */
+    private function getAdditionalCssFiles()
+    {
+        $code = "";
+        foreach ($this->getCssFiles() as $file) {
+            $code .= sprintf('<link type="text/css" rel="stylesheet" href="%s"/>', $file) . "\n";
+        }
+        return $code;
+    }
+
+    /**
+     * Get all additional javascript files as script html code
+     * @return string
+     */
+    private function getAdditionalJsFiles()
+    {
+        $code = "";
+        foreach ($this->getJsFiles() as $file) {
+            $code .= sprintf('<script type="text/javascript" src="%s"></script>', $file) . "\n";
+        }
+        return $code;
     }
 
     /**
@@ -52,6 +91,7 @@ class View extends AbstractView
     <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap/css/bootstrap-theme.min.css", $request->getContextPrefix()).'">
     <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css", $request->getContextPrefix()).'">
     <link rel="stylesheet" href="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/css/calendar.min.css", $request->getContextPrefix()).'">
+    '.$this->getAdditionalCssFiles().'
 
     <script src="'.sprintf("%s../components/jquery/jquery.min.js", $request->getContextPrefix()).'"></script>
     <script src="'.sprintf("%s../components/bootstrap/js/bootstrap.min.js", $request->getContextPrefix()).'"></script>
@@ -62,6 +102,7 @@ class View extends AbstractView
             $request->getContextPrefix(), $request->getParam('Accept-Language-Best')) :
     '').'
     <script src="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/js/calendar.min.js", $request->getContextPrefix()).'"></script>
+    '.$this->getAdditionalJsFiles().'
 </head>
 <body>
     <div class="jumbotron">
