@@ -15,6 +15,8 @@ class Div extends Control
      *
      * @param Control $element The element to add
      * @param number $order The order - if not given, the element will be simply appended to end
+     *
+     * @return Div the current div instance as fluent interface
      */
     public function addElement(Control $element, $order = 0)
     {
@@ -24,6 +26,7 @@ class Div extends Control
         else {
             $this->elements[$order] = $element;
         }
+        return $this;
     }
 
     /**
