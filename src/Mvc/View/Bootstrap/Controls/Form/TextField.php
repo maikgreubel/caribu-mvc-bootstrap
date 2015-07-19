@@ -137,4 +137,16 @@ class TextField extends Field
     {
         $this->type = $type;
     }
+
+    /**
+     * Checks whether a given parameter exists in element parameters
+     *
+     * @param string $name The name of parameter to check
+     *
+     * @return boolean true in case of parameter is set, false otherwise
+     */
+    public function hasElementParameter($name)
+    {
+        return isset($this->elementParameters[$name]);
+    }
 }

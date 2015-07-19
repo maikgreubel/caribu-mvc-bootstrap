@@ -47,24 +47,24 @@ class View extends AbstractView
 <head>
     <title>{title}</title>
 
-    <link rel="stylesheet" href="'.sprintf("%s../vendor/components/bootstrap/css/bootstrap.min.css", $request->getContextPrefix()).'">
-    <link rel="stylesheet" href="'.sprintf("%s../vendor/components/bootstrap/css/bootstrap-theme.min.css", $request->getContextPrefix()).'">
+    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap/css/bootstrap.min.css", $request->getContextPrefix()).'">
+    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap/css/bootstrap-theme.min.css", $request->getContextPrefix()).'">
+    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css", $request->getContextPrefix()).'">
     <link rel="stylesheet" href="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/css/calendar.min.css", $request->getContextPrefix()).'">
-    <link rel="stylesheet" href="'.sprintf("%s../vendor/eternicode/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css", $request->getContextPrefix()).'">
 
-    <script src="'.sprintf("%s../vendor/components/jquery/jquery.min.js", $request->getContextPrefix()).'"></script>
-    <script src="'.sprintf("%s../vendor/components/bootstrap/js/bootstrap.min.js", $request->getContextPrefix()).'"></script>
-    <script src="'.sprintf("%s../vendor/eternicode/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js", $request->getContextPrefix()).'"></script>
-    <script src="'.sprintf("%s../vendor/components/underscore/underscore-min.js", $request->getContextPrefix()).'"></script>
-        '.(null !== $request->getParam('Accept-Language-Best') ?
+    <script src="'.sprintf("%s../components/jquery/jquery.min.js", $request->getContextPrefix()).'"></script>
+    <script src="'.sprintf("%s../components/bootstrap/js/bootstrap.min.js", $request->getContextPrefix()).'"></script>
+    <script src="'.sprintf("%s../components/bootstrap-datepicker/js/bootstrap-datepicker.js", $request->getContextPrefix()).'"></script>
+    <script src="'.sprintf("%s../components/underscore/underscore-min.js", $request->getContextPrefix()).'"></script>
+    '.(null !== $request->getParam('Accept-Language-Best') ?
         sprintf('<script src="%s../vendor/serhioromano/bootstrap-calendar/js/language/%s.js"></script>',
             $request->getContextPrefix(), $request->getParam('Accept-Language-Best')) :
-        '').'
-    <script src="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/js/calendar.js", $request->getContextPrefix()).'"></script>
+    '').'
+    <script src="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/js/calendar.min.js", $request->getContextPrefix()).'"></script>
 </head>
 <body>
     <div class="jumbotron">
-		<div class="container">
+        <div class="container">
             {content}
         </div>
     </div>

@@ -12,7 +12,9 @@ class DatePicker extends TextField
     public function render(Request $request, $parameters = array())
     {
         $this->setClass( sprintf("%s datapicker", $this->getClass()) );
-        $this->addParameter('data-date-format', "yyyy-mm-dd");
+        if (!$this->hasElementParameter('data-date-format')) {
+            $this->addParameter('data-date-format', "yyyy-mm-dd");
+        }
         if (!$this->getValue()) {
             $this->setValue(strftime("%Y-%m-%d"));
         }
