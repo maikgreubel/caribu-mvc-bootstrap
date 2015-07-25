@@ -56,7 +56,7 @@ class Table extends Control
      */
     public function render(Request $request, $parameters = array())
     {
-        $code = sprintf('<table %sclass=".table%s">', $this->getId() ? sprintf(' id="%s"', $this->getId()) : '',
+        $code = sprintf('<table %sclass=".table%s">', $this->getId() ? sprintf('id="%s" ', $this->getId()) : '',
             $this->getClass() ? sprintf(' %s', $this->getClass()) : "");
 
         if (count($this->columnHeaders)) {
