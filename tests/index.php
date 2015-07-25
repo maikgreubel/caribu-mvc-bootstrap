@@ -119,6 +119,7 @@ class BootstrapTestController extends AbstractController
 
         $datePicker = new DatePicker('startDate');
         $datePicker->setLabel('Day');
+        $datePicker->addOption('autoclose', true)->addOption('weekStart', 1);
         $form->addField($datePicker);
 
         $this->viewParams['form']['datepicker'] = $form;

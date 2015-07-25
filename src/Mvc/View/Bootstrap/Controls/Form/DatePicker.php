@@ -65,7 +65,7 @@ class DatePicker extends TextField
         $code = "";
 
         foreach ($this->options as $name => $value) {
-            $code .= sprintf('%c%s: %s', ($code ? ',' : ''), $name, $this->valueToString($value))."\n";
+            $code .= sprintf('%s%s: %s', ($code ? ',' : ''), $name, $this->valueToString($value))."\n";
         }
 
         return $code;
