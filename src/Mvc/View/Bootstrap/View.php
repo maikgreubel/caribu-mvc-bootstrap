@@ -89,7 +89,7 @@ class View extends AbstractView
 
     <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap/css/bootstrap.min.css", $request->getContextPrefix()).'">
     <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap/css/bootstrap-theme.min.css", $request->getContextPrefix()).'">
-    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css", $request->getContextPrefix()).'">
+    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css", $request->getContextPrefix()).'">
     <link rel="stylesheet" href="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/css/calendar.min.css", $request->getContextPrefix()).'">
     '.$this->getAdditionalCssFiles().'
 
