@@ -16,6 +16,7 @@ class TextField extends Field
 
     /**
      * Type of text field
+     *
      * @var string
      */
     private $type;
@@ -29,6 +30,7 @@ class TextField extends Field
 
     /**
      * Additional element parameters
+     *
      * @var array
      */
     private $elementParameters = array();
@@ -37,7 +39,7 @@ class TextField extends Field
      *
      * @return string The placeholder value
      */
-    public function getPlaceholder()
+    public function getPlaceholder(): string
     {
         return $this->placeholder;
     }
@@ -45,12 +47,14 @@ class TextField extends Field
     /**
      * Add another parameter to element
      *
-     * @param string $name The name of parameter
-     * @param string $value The value of parameter
+     * @param string $name
+     *            The name of parameter
+     * @param string $value
+     *            The value of parameter
      *
-     * @return TextField
+     * @return TextField the current text field instance
      */
-    public function addParameter($name, $value)
+    public function addParameter(string $name, string $value): TextField
     {
         $this->elementParameters[$name] = $value;
         return $this;
@@ -60,8 +64,9 @@ class TextField extends Field
      *
      * @param string $placeholder
      *            The placeholder value
+     * @return TextField the current text field instance
      */
-    public function setPlaceholder($placeholder)
+    public function setPlaceholder(string $placeholder): TextField
     {
         $this->placeholder = $placeholder;
         return $this;
@@ -72,7 +77,7 @@ class TextField extends Field
      *
      * @return string The element parameters
      */
-    private function getElementParameterString()
+    private function getElementParameterString(): string
     {
         $string = "";
         foreach ($this->elementParameters as $name => $value) {
@@ -83,24 +88,25 @@ class TextField extends Field
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Nkey\Caribu\Mvc\View\Control::render()
      */
-    public function render(Request $request, $parameters = array())
+    public function render(Request $request, $parameters = array()): string
     {
         $id = $this->getId();
-        if(null == $id) {
+        if (null == $id) {
             throw new ControlException("Form element must have at least an id");
         }
 
         $name = $this->getName();
-        if(null == $name) {
+        if (null == $name) {
             $name = $id;
         }
 
         $cssClass = $this->getClass();
 
         $value = $this->getValue();
-        if(null == $value) {
+        if (null == $value) {
             $value = $request->getParam($name);
         }
 
@@ -108,20 +114,11 @@ class TextField extends Field
 
         $code = sprintf('<div class="form-group">');
 
-        if(!is_null($this->getLabel())) {
+        if (! is_null($this->getLabel())) {
             $code .= sprintf('<label for="%s">%s</label>', $this->getId(), $this->getLabel());
         }
 
-        $code .= sprintf(
-            '<input type="%s" name="%s" id="%s" class="form-control %s" value="%s" placeholder="%s"%s/>',
-            $this->type,
-            $name,
-            $id,
-            $cssClass,
-            $value,
-            $placeHolder,
-            $this->getElementParameterString()
-        );
+        $code .= sprintf('<input type="%s" name="%s" id="%s" class="form-control %s" value="%s" placeholder="%s"%s/>', $this->type, $name, $id, $cssClass, $value, $placeHolder, $this->getElementParameterString());
 
         $code .= sprintf('</div>');
 
@@ -131,21 +128,26 @@ class TextField extends Field
     /**
      * Set the text field type
      *
-     * @param string $type The type
+     * @param string $type
+     *            The type
+     *
+     * @return TextField the current text field instance
      */
-    public function setType($type = 'text')
+    public function setType(string $type = 'text'): TextField
     {
         $this->type = $type;
+        return this;
     }
 
     /**
      * Checks whether a given parameter exists in element parameters
      *
-     * @param string $name The name of parameter to check
+     * @param string $name
+     *            The name of parameter to check
      *
      * @return boolean true in case of parameter is set, false otherwise
      */
-    public function hasElementParameter($name)
+    public function hasElementParameter($name): bool
     {
         return isset($this->elementParameters[$name]);
     }

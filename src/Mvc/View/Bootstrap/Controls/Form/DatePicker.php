@@ -11,6 +11,7 @@ use Nkey\Caribu\Mvc\View\Controls\ControlException;
  */
 class DatePicker extends TextField
 {
+
     /**
      * Options to add to constructor
      *
@@ -28,12 +29,14 @@ class DatePicker extends TextField
     /**
      * Add an option to the datepicker
      *
-     * @param string $name The name of the option
-     * @param mixed $value The value of the option
+     * @param string $name
+     *            The name of the option
+     * @param mixed $value
+     *            The value of the option
      *
      * @return DatePicker the current datepicker instance
      */
-    public function addOption($name, $value)
+    public function addOption($name, $value): DatePicker
     {
         $this->options[$name] = $value;
         return $this;
@@ -42,14 +45,15 @@ class DatePicker extends TextField
     /**
      * Dependending on type the value will be wrapped by quotes or not
      *
-     * @param mixed $value The value to wrap
+     * @param mixed $value
+     *            The value to wrap
      *
      * @return string the wrapped value
      */
-    private function valueToString($value)
+    private function valueToString($value): string
     {
         $result = strval($value);
-        if(is_string($value)) {
+        if (is_string($value)) {
             $result = sprintf("'%s'", $value);
         }
         return $result;
@@ -60,12 +64,12 @@ class DatePicker extends TextField
      *
      * @return string The options as javascript code
      */
-    private function getOptionsString()
+    private function getOptionsString(): string
     {
         $code = "";
 
         foreach ($this->options as $name => $value) {
-            $code .= sprintf('%s%s: %s', ($code ? ',' : ''), $name, $this->valueToString($value))."\n";
+            $code .= sprintf('%s%s: %s', ($code ? ',' : ''), $name, $this->valueToString($value)) . "\n";
         }
 
         return $code;
@@ -76,7 +80,7 @@ class DatePicker extends TextField
      *
      * @return string The javascript code
      */
-    private function eventsToString()
+    private function eventsToString(): string
     {
         $code = "";
         foreach ($this->events as $event => $code) {
@@ -88,14 +92,17 @@ class DatePicker extends TextField
     /**
      * Add an event handler
      *
-     * @param string $on The event to add a handler code for
-     * @param string $code The javascript code, which will be embedded into handler function
+     * @param string $on
+     *            The event to add a handler code for
+     * @param string $code
+     *            The javascript code, which will be embedded into handler function
      *
+     * @return DatePicker the current date picker instance
      * @throws ControlException
      */
-    public function addEvent($on, $code)
+    public function addEvent($on, $code): DatePicker
     {
-        switch($on) {
+        switch ($on) {
             case 'show':
             case 'hide':
             case 'clearDate':
@@ -105,33 +112,35 @@ class DatePicker extends TextField
                 $this->events[$on] = $code;
                 break;
             default:
-                throw new ControlException("Can not override non existing event {ev}", array('ev' => $on));
+                throw new ControlException("Can not override non existing event {ev}", array(
+                    'ev' => $on
+                ));
         }
 
+        return $this;
     }
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Nkey\Caribu\Mvc\View\Bootstrap\Controls\Form\TextField::render()
      */
-    public function render(Request $request, $parameters = array())
+    public function render(Request $request, $parameters = array()): string
     {
-        $this->setClass( sprintf("%s datapicker", $this->getClass()) );
-        if (!$this->hasElementParameter('data-date-format')) {
+        $this->setClass(sprintf("%s datapicker", $this->getClass()));
+        if (! $this->hasElementParameter('data-date-format')) {
             $this->addParameter('data-date-format', "yyyy-mm-dd");
         }
-        if (!$this->getValue()) {
+        if (! $this->getValue()) {
             $this->setValue(strftime("%Y-%m-%d"));
         }
 
         $code = sprintf('%s
             <script type="text/javascript">
             $("#%s").datepicker({
-                '.$this->getOptionsString().'
-            })'.$this->eventsToString().';
-            </script>',
-            parent::render($request, $parameters),
-            $this->getId());
+                ' . $this->getOptionsString() . '
+            })' . $this->eventsToString() . ';
+            </script>', parent::render($request, $parameters), $this->getId());
 
         return $code;
     }

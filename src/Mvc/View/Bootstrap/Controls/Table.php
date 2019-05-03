@@ -2,8 +2,10 @@
 namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls;
 
 use Nkey\Caribu\Mvc\Controller\Request;
+
 class Table extends Control
 {
+
     /**
      * Column headers
      *
@@ -21,17 +23,18 @@ class Table extends Control
     /**
      * Add a new header
      *
-     * @param string $headerName The column header name
-     * @param number $order Optional order number
+     * @param string $headerName
+     *            The column header name
+     * @param number $order
+     *            Optional order number
      *
      * @return Table the current table instance as fluent interface
      */
-    public function addColumnHeader($headerName, $order = null)
+    public function addColumnHeader(string $headerName, $order = null): Table
     {
-        if(null != $order && is_int($order)) {
+        if (null != $order && is_int($order)) {
             $this->columnHeaders[$order] = $headerName;
-        }
-        else {
+        } else {
             $this->columnHeaders[count($this->columnHeaders)] = $headerName;
         }
         return $this;
@@ -40,11 +43,12 @@ class Table extends Control
     /**
      * Add a new row to the table
      *
-     * @param array $row The row to add
+     * @param array $row
+     *            The row to add
      *
      * @return Table the current table instance as fluent interface
      */
-    public function addRow($row)
+    public function addRow(array $row): Table
     {
         $this->rows[] = $row;
         return $this;
@@ -52,31 +56,33 @@ class Table extends Control
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Nkey\Caribu\Mvc\View\Control::render()
      */
-    public function render(Request $request, $parameters = array())
+    public function render(Request $request, $parameters = array()): string
     {
-        $code = sprintf('<table %sclass=".table%s">', $this->getId() ? sprintf('id="%s" ', $this->getId()) : '',
-            $this->getClass() ? sprintf(' %s', $this->getClass()) : "");
+        $code = sprintf('<table %sclass=".table%s">', //
+        $this->getId() ? sprintf('id="%s" ', $this->getId()) : '', //
+        $this->getClass() ? sprintf(' %s', $this->getClass()) : "");
 
         if (count($this->columnHeaders)) {
-            $code.= "<tr>";
+            $code .= "<tr>";
 
             foreach ($this->columnHeaders as $header) {
                 $code .= sprintf('<th>%s</th>', $header);
             }
-            $code.= "</tr>";
+            $code .= "</tr>";
         }
 
         foreach ($this->rows as $row) {
-            $code.= "<tr>";
+            $code .= "<tr>";
             foreach ($row as $col) {
-                $code.= sprintf('<td>%s</td>', $col);
+                $code .= sprintf('<td>%s</td>', $col);
             }
-            $code.= "</tr>";
+            $code .= "</tr>";
         }
 
-        $code.= "</table>";
+        $code .= "</table>";
 
         return $code;
     }

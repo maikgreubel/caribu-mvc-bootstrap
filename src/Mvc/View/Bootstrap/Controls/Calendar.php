@@ -1,5 +1,4 @@
 <?php
-
 namespace Nkey\Caribu\Mvc\View\Bootstrap\Controls;
 
 use Nkey\Caribu\Mvc\Controller\Request;
@@ -13,9 +12,17 @@ use Nkey\Caribu\Mvc\Controller\Request;
  */
 class Calendar extends Control
 {
+
     private $options = array();
 
-    private function optionsToString(array $options)
+    /**
+     * Render options to a string
+     *
+     * @param array $options
+     *            the options to render
+     * @return string the rendered string
+     */
+    private function optionsToString(array $options): string
     {
         $str = "";
 
@@ -23,7 +30,7 @@ class Calendar extends Control
             if (empty($value)) {
                 continue;
             }
-            if (!empty($str)) {
+            if (! empty($str)) {
                 $str .= ",\n\t\t";
             }
             $str .= sprintf("%s: %s", $name, $value);
@@ -34,13 +41,14 @@ class Calendar extends Control
     /**
      * Check whether the given language by request is valid
      *
-     * @param string $lang The language
-     * @return boolean true in case of it is valid, false otherwise
+     * @param string $lang
+     *            The language
+     * @return bool true in case of it is valid, false otherwise
      */
-    private function isValidLanguage($lang)
+    private function isValidLanguage(string $lang): bool
     {
         $valid = false;
-        switch($lang) {
+        switch ($lang) {
             case 'bs-BA':
             case 'cs-CZ':
             case 'da-DK':
@@ -85,13 +93,13 @@ class Calendar extends Control
             $this->options['language'] = sprintf("'%s'", $request->getParam('Accept-Language-Best'));
         }
         $this->options['tmpl_path'] = sprintf("'%s../vendor/serhioromano/bootstrap-calendar/tmpls/'", $request->getContextPrefix());
-        if (!isset($this->options['view'])) {
+        if (! isset($this->options['view'])) {
             $this->options['view'] = "'month'";
         }
-        if (!isset($this->options['tmpl_cache'])) {
+        if (! isset($this->options['tmpl_cache'])) {
             $this->options['tmpl_cache'] = "false";
         }
-        if (!isset($this->options['day'])) {
+        if (! isset($this->options['day'])) {
             $this->options['day'] = sprintf("'%s'", strftime("%Y-%m-%d", time()));
         }
     }
@@ -104,7 +112,7 @@ class Calendar extends Control
      *
      * @return Calendar
      */
-    public function setOption($name, $value)
+    public function setOption($name, $value): Calendar
     {
         $this->options[$name] = $value;
         return $this;
@@ -112,22 +120,23 @@ class Calendar extends Control
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Nkey\Caribu\Mvc\View\Control::render()
      */
-    public function render(Request $request, $parameters = array())
+    public function render(Request $request, $parameters = array()): string
     {
         $this->setDefaults($request);
 
         $html = '
-    <div id="'.$this->getId().'"></div>
+    <div id="' . $this->getId() . '"></div>
     <script type="text/javascript">
         "use strict";
         try
         {
             var options = {
-                '.$this->optionsToString($this->options).'
+                ' . $this->optionsToString($this->options) . '
             };
-            var calendar = $("#'.$this->getId().'").calendar(options);
+            var calendar = $("#' . $this->getId() . '").calendar(options);
         }
         catch(e)
         {
@@ -136,6 +145,6 @@ class Calendar extends Control
         }
     </script>
     ';
-       return $html;
+        return $html;
     }
 }

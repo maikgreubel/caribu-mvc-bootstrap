@@ -1,10 +1,10 @@
 <?php
 namespace Nkey\Caribu\Mvc\View\Bootstrap;
 
-use \Nkey\Caribu\Mvc\Controller\Response;
-use \Nkey\Caribu\Mvc\Controller\Request;
-use \Nkey\Caribu\Mvc\View\AbstractView;
-use \Generics\Util\Interpolator;
+use Nkey\Caribu\Mvc\Controller\Response;
+use Nkey\Caribu\Mvc\Controller\Request;
+use Nkey\Caribu\Mvc\View\AbstractView;
+use Generics\Util\Interpolator;
 
 /**
  * This class provides a view implementation depending on bootstrap
@@ -25,7 +25,8 @@ class View extends AbstractView
 
     /**
      * List of javascript files to include
-     * @var unknown
+     *
+     * @var array
      */
     private $jsFiles = array();
 
@@ -39,18 +40,20 @@ class View extends AbstractView
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Nkey\Caribu\Mvc\View\View::getOrder()
      */
-    public function getOrder()
+    public function getOrder(): int
     {
         return 1;
     }
 
     /**
      * Get all additional css files as link html code
+     *
      * @return string
      */
-    private function getAdditionalCssFiles()
+    private function getAdditionalCssFiles(): string
     {
         $code = "";
         foreach ($this->getCssFiles() as $file) {
@@ -61,9 +64,10 @@ class View extends AbstractView
 
     /**
      * Get all additional javascript files as script html code
+     *
      * @return string
      */
-    private function getAdditionalJsFiles()
+    private function getAdditionalJsFiles(): string
     {
         $code = "";
         foreach ($this->getJsFiles() as $file) {
@@ -74,12 +78,13 @@ class View extends AbstractView
 
     /**
      * (non-PHPdoc)
+     *
      * @see \Nkey\Caribu\Mvc\View\View::render()
      */
-    public function render(Response &$response, Request $request, $parameters = array())
+    public function render(Response &$response, Request $request, $parameters = array()): string
     {
         if ($response->getType() != 'text/html') {
-            return;
+            return "";
         }
 
         $html = '<!DOCTYPE html>
@@ -87,22 +92,19 @@ class View extends AbstractView
 <head>
     <title>{title}</title>
 
-    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap/css/bootstrap.min.css", $request->getContextPrefix()).'">
-    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap/css/bootstrap-theme.min.css", $request->getContextPrefix()).'">
-    <link rel="stylesheet" href="'.sprintf("%s../components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css", $request->getContextPrefix()).'">
-    <link rel="stylesheet" href="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/css/calendar.min.css", $request->getContextPrefix()).'">
-    '.$this->getAdditionalCssFiles().'
+    <link rel="stylesheet" href="' . sprintf("%s../components/bootstrap/css/bootstrap.min.css", $request->getContextPrefix()) . '">
+    <link rel="stylesheet" href="' . sprintf("%s../components/bootstrap/css/bootstrap-theme.min.css", $request->getContextPrefix()) . '">
+    <link rel="stylesheet" href="' . sprintf("%s../components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css", $request->getContextPrefix()) . '">
+    <link rel="stylesheet" href="' . sprintf("%s../vendor/serhioromano/bootstrap-calendar/css/calendar.min.css", $request->getContextPrefix()) . '">
+    ' . $this->getAdditionalCssFiles() . '
 
-    <script src="'.sprintf("%s../components/jquery/jquery.min.js", $request->getContextPrefix()).'"></script>
-    <script src="'.sprintf("%s../components/bootstrap/js/bootstrap.min.js", $request->getContextPrefix()).'"></script>
-    <script src="'.sprintf("%s../components/bootstrap-datepicker/js/bootstrap-datepicker.js", $request->getContextPrefix()).'"></script>
-    <script src="'.sprintf("%s../components/underscore/underscore-min.js", $request->getContextPrefix()).'"></script>
-    '.(null !== $request->getParam('Accept-Language-Best') ?
-        sprintf('<script src="%s../vendor/serhioromano/bootstrap-calendar/js/language/%s.js"></script>',
-            $request->getContextPrefix(), $request->getParam('Accept-Language-Best')) :
-    '').'
-    <script src="'.sprintf("%s../vendor/serhioromano/bootstrap-calendar/js/calendar.min.js", $request->getContextPrefix()).'"></script>
-    '.$this->getAdditionalJsFiles().'
+    <script src="' . sprintf("%s../components/jquery/jquery.min.js", $request->getContextPrefix()) . '"></script>
+    <script src="' . sprintf("%s../components/bootstrap/js/bootstrap.min.js", $request->getContextPrefix()) . '"></script>
+    <script src="' . sprintf("%s../components/bootstrap-datepicker/js/bootstrap-datepicker.js", $request->getContextPrefix()) . '"></script>
+    <script src="' . sprintf("%s../components/underscore/underscore-min.js", $request->getContextPrefix()) . '"></script>
+    ' . (null !== $request->getParam('Accept-Language-Best') ? sprintf('<script src="%s../vendor/serhioromano/bootstrap-calendar/js/language/%s.js"></script>', $request->getContextPrefix(), $request->getParam('Accept-Language-Best')) : '') . '
+    <script src="' . sprintf("%s../vendor/serhioromano/bootstrap-calendar/js/calendar.min.js", $request->getContextPrefix()) . '"></script>
+    ' . $this->getAdditionalJsFiles() . '
 </head>
 <body>
     <div class="jumbotron">
@@ -112,6 +114,9 @@ class View extends AbstractView
     </div>
 </body>
 </html>';
-        $response->setBody($this->interpolate($html, array('title' => $response->getTitle(), 'content' => $response->getBody())));
+        $response->setBody($this->interpolate($html, array(
+            'title' => $response->getTitle(),
+            'content' => $response->getBody()
+        )));
     }
 }

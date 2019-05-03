@@ -24,7 +24,7 @@ class Button extends FormElement
      *
      * @return string The type
      */
-    public function getType()
+    public function getType(): string
     {
         return $this->type;
     }
@@ -34,7 +34,7 @@ class Button extends FormElement
      * @param string $type
      *            The type
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
         return $this;
@@ -45,16 +45,14 @@ class Button extends FormElement
      *
      * @see \Nkey\Caribu\Mvc\View\Control::render()
      */
-    public function render(Request $request, $parameters = array())
+    public function render(Request $request, $parameters = array()): string
     {
-        $code = sprintf(
-            '<button type="%s" id="%s" class="btn btn-default %s" name="%s">%s</button>',
-            (!is_null($this->type) ? $this->type : "submit"),
-            $this->getId(),
-            $this->getClass(),
-            $this->getName(),
-            is_null($this->getLabel()) ? $this->getName() : $this->getLabel()
-        );
+        $code = sprintf('<button type="%s" id="%s" class="btn btn-default %s" name="%s">%s</button>', //
+        (! is_null($this->type) ? $this->type : "submit"), //
+        $this->getId(), //
+        $this->getClass(), //
+        $this->getName(), //
+        is_null($this->getLabel()) ? $this->getName() : $this->getLabel());
 
         return $code;
     }

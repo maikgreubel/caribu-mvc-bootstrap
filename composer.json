@@ -16,9 +16,9 @@
 	"license" : "BSD-2-Clause",
 	"require" : {
 		"php" : ">=5.4",
-		"nkey/phpgenerics" : "1.1.*@dev",
-		"nkey/caribu-mvc" : "1.0.*@dev",
-		"serhioromano/bootstrap-calendar" : "0.2.4",
+		"nkey/phpgenerics" : "dev-master",
+		"nkey/caribu-mvc" : "dev-master",
+		"serhioromano/bootstrap-calendar" : "dev-master",
 		"eternicode/bootstrap-datepicker" : "1.4.0"
 	},
 	"support" : {
@@ -30,14 +30,15 @@
 	"authors" : [{
 			"name" : "Maik Greubel",
 			"email" : "greubel@nkey.de",
-			"homepage" : "http://www.nkey.de",
+			"homepage" : "https://www.nkey.de",
 			"role" : "Maintainer"
 		}
 	],
 	"homepage" : "https://github.com/maikgreubel/caribu-mvc-bootstrap",
 	"extra" : {
 		"branch-alias" : {
-			"dev-master" : "1.0-dev"
+			"dev-master" : "1.1-dev"
 		}
-	}
+	},
+	"minimum-stability" : "dev"
 }

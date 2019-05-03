@@ -13,6 +13,7 @@ use Nkey\Caribu\Mvc\View\Bootstrap\Controls\Control;
  */
 class Form extends Control
 {
+
     /**
      * List of fields
      *
@@ -44,9 +45,10 @@ class Form extends Control
     /**
      * Create a new form element
      *
-     * @param string $id The id
+     * @param string $id
+     *            The id
      */
-    public function __construct($id = "", $action = "")
+    public function __construct(string $id = "", string $action = "")
     {
         $this->id = $id;
         $this->action = $action;
@@ -57,21 +59,16 @@ class Form extends Control
      *
      * @see \Nkey\Caribu\Mvc\View\Control::render()
      */
-    public function render(Request $request, $parameters = array())
+    public function render(Request $request, $parameters = array()): string
     {
-        $code = sprintf(
-            '<form action="%s" method="%s" id="%s">',
-            $this->getFormAction($request, $parameters),
-            $this->method,
-            $this->id
-        );
+        $code = sprintf('<form action="%s" method="%s" id="%s">', $this->getFormAction($request, $parameters), $this->method, $this->id);
 
-        foreach($this->fields as $field) {
+        foreach ($this->fields as $field) {
             assert($field instanceof Field);
             $code .= $field->render($request);
         }
 
-        foreach($this->buttons as $button) {
+        foreach ($this->buttons as $button) {
             assert($button instanceof Button);
             $code .= $button->render($request);
         }
@@ -84,22 +81,19 @@ class Form extends Control
     /**
      * Get the form action from request and parameters
      *
-     * @param Request $request The origin request
-     * @param array $parameters Optional parameter list
+     * @param Request $request
+     *            The origin request
+     * @param array $parameters
+     *            Optional parameter list
      *
      * @return string The form action
      */
-    private function getFormAction(Request $request, $parameters)
+    private function getFormAction(Request $request, $parameters): string
     {
-        if($this->action) {
+        if ($this->action) {
             return $this->action;
         }
-        $formAction = sprintf(
-            "%s%s/%s",
-            !is_null($request->getContextPrefix() && !empty($request->getContextPrefix())) ? $request->getContextPrefix() : "",
-            is_array($parameters) && isset($parameters['controller']) ? $parameters['controller'] : lcfirst($request->getController()),
-            is_array($parameters) && isset($parameters['action']) ? $parameters['action'] : lcfirst($request->getAction())
-        );
+        $formAction = sprintf("%s%s/%s", ! is_null($request->getContextPrefix() && ! empty($request->getContextPrefix())) ? $request->getContextPrefix() : "", is_array($parameters) && isset($parameters['controller']) ? $parameters['controller'] : lcfirst($request->getController()), is_array($parameters) && isset($parameters['action']) ? $parameters['action'] : lcfirst($request->getAction()));
 
         if (is_array($parameters) && isset($parameters['formAction'])) {
             $formAction = $parameters['formAction'];
@@ -109,10 +103,11 @@ class Form extends Control
     }
 
     /**
+     * Returns all registered fields
      *
-     * @return the array
+     * @return array
      */
-    public function getFields()
+    public function getFields(): array
     {
         return $this->fields;
     }
@@ -121,43 +116,57 @@ class Form extends Control
      * Add a new field
      *
      * @param Control $field
+     * @return Form the current form instance
      */
-    public function addField(Field $field)
+    public function addField(Field $field): Form
     {
-       $this->fields[] = $field;
-       return $this;
+        $this->fields[] = $field;
+        return $this;
     }
 
-
     /**
+     * Returns all registered buttons
      *
-     * @return the array
+     * @return array
      */
-    public function getButtons()
+    public function getButtons(): array
     {
         return $this->buttons;
     }
 
-    public function addButton(Button $button)
+    /**
+     * Add a button to form
+     *
+     * @param Button $button
+     *            the button to add
+     * @return Form the current form instance
+     */
+    public function addButton(Button $button): Form
     {
         $this->buttons[] = $button;
+        return $this;
     }
 
     /**
+     * Returns the method to interact with server on submitting the form
      *
-     * @return the string
+     * Result will be one off GET, POST, etc.
+     *
+     * @return string
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
 
     /**
      *
-     * @param
-     *            $method
+     * @param string $method
+     *            The method to interact with the server on submitting the Form
+     * @see Form::getMethod()
+     * @return Form the current form instance
      */
-    public function setMethod($method)
+    public function setMethod(string $method): Form
     {
         $this->method = $method;
         return $this;

@@ -51,20 +51,22 @@ abstract class FormElement extends Control
     /**
      * Create a new form element
      *
-     * @param string $id The id of form element
-     * @param string $name Optional name of element (if not provide, id will be used instead)
+     * @param string $id
+     *            The id of form element
+     * @param string $name
+     *            Optional name of element (if not provide, id will be used instead)
      */
-    public function __construct($id, $name = null)
+    public function __construct(string $id, string $name = "")
     {
         $this->id = $id;
-        $this->name = !is_null($name) ? $name : $id;
+        $this->name = $name != "" ? $name : $id;
     }
 
     /**
      *
      * @return string The id
      */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
@@ -73,8 +75,10 @@ abstract class FormElement extends Control
      *
      * @param string $id
      *            The id
+     *
+     * @return FormElement the current form element instance
      */
-    public function setId($id)
+    public function setId(string $id): FormElement
     {
         $this->id = $id;
         return $this;
@@ -84,7 +88,7 @@ abstract class FormElement extends Control
      *
      * @return string The name
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -93,8 +97,10 @@ abstract class FormElement extends Control
      *
      * @param string $name
      *            The name
+     *
+     * @return FormElement the current form element instance
      */
-    public function setName($name)
+    public function setName(string $name): FormElement
     {
         $this->name = $name;
         return $this;
@@ -104,7 +110,7 @@ abstract class FormElement extends Control
      *
      * @return string The label
      */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
@@ -113,8 +119,10 @@ abstract class FormElement extends Control
      *
      * @param string $label
      *            The label
+     *
+     * @return FormElement the current form element instance
      */
-    public function setLabel($label)
+    public function setLabel(string $label): FormElement
     {
         $this->label = $label;
         return $this;
@@ -124,7 +132,7 @@ abstract class FormElement extends Control
      *
      * @return string The css class(es)
      */
-    public function getClass()
+    public function getClass(): string
     {
         return $this->class;
     }
@@ -133,8 +141,9 @@ abstract class FormElement extends Control
      *
      * @param string $class
      *            The css class(es)
+     * @return FormElement the current form element instance
      */
-    public function setClass($class)
+    public function setClass(string $class): FormElement
     {
         $this->class = $class;
         return $this;
@@ -144,7 +153,7 @@ abstract class FormElement extends Control
      *
      * @return string The element value
      */
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
@@ -153,8 +162,9 @@ abstract class FormElement extends Control
      *
      * @param string $value
      *            The element value
+     * @return FormElement the current form element instance
      */
-    public function setValue($value)
+    public function setValue(string $value): FormElement
     {
         $this->value = $value;
         return $this;

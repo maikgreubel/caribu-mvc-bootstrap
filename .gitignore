@@ -9,3 +9,4 @@ cache.properties
 /contrib/
 /tests/application.log
 /components/
+/composer.phar
