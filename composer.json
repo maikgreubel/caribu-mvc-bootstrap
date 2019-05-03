@@ -15,7 +15,7 @@
 	"description" : "Bootstrap View addon for Caribu (M)VC",
 	"license" : "BSD-2-Clause",
 	"require" : {
-		"php" : ">=5.4",
+		"php" : ">=7.2",
 		"nkey/phpgenerics" : "dev-master",
 		"nkey/caribu-mvc" : "dev-master",
 		"serhioromano/bootstrap-calendar" : "dev-master",
